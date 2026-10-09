@@ -1,13 +1,10 @@
 from flask import Blueprint, request, jsonify
-
-estanques_bp = Blueprint('estanques', __name__)
-
-estanques = []
-alimentacion = []
 # 1. Crear el Blueprint para el módulo
 estanques_bp = Blueprint('estanques', __name__)
+# 2. Inicializar las listas para almacenar la información en memoria
+estanques = []
 lecturas_agua = []
-@estanques_bp.route('/api/estanques', methods=['POST'])
+@estanques_bp.route('/', methods=['POST'])
 def registrar_estanque():
     datos = request.get_json()
     nuevo_estanque = {
@@ -19,11 +16,11 @@ def registrar_estanque():
     estanques.append(nuevo_estanque)
     return jsonify({"mensaje": "Estanque registrado exitosamente", "estanque": nuevo_estanque}), 201
 
-@estanques_bp.route('/api/estanques', methods=['GET'])
+@estanques_bp.route('/', methods=['GET'])
 def listar_estanques():
     return jsonify(estanques), 200
 
-@estanques_bp.route('/api/estanques/lecturas', methods=['POST'])
+@estanques_bp.route('/lecturas', methods=['POST'])
 def registrar_lectura_agua():
     datos = request.get_json()
     nueva_lectura = {

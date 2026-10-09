@@ -5,7 +5,7 @@ lotes_bp = Blueprint('lotes', __name__)
 lotes = []
 alimentacion = []
 
-@lotes_bp.route('/api/lotes', methods=['POST'])
+@lotes_bp.route('/', methods=['POST'])
 def registrar_lote():
     datos = request.get_json()
     nuevo_lote = {
@@ -18,7 +18,7 @@ def registrar_lote():
     lotes.append(nuevo_lote)
     return jsonify({"mensaje": "Lote registrado exitosamente", "lote": nuevo_lote}), 201
 
-@lotes_bp.route('/lotes', methods=['GET'])
+@lotes_bp.route('/', methods=['GET'])
 def listar_lotes():
     return jsonify(lotes), 200
 
